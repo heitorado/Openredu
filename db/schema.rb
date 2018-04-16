@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170928125123) do
+ActiveRecord::Schema.define(:version => 20180404040711) do
 
   create_table "alternatives", :force => true do |t|
     t.text     "text"
@@ -206,6 +206,8 @@ ActiveRecord::Schema.define(:version => 20170928125123) do
     t.boolean  "published",         :default => true
     t.boolean  "destroy_soon",      :default => false
     t.boolean  "blocked",           :default => false
+    t.string   "initials"
+    t.float    "average"
   end
 
   add_index "courses", ["destroy_soon"], :name => "index_courses_on_destroy_soon"
@@ -539,6 +541,8 @@ ActiveRecord::Schema.define(:version => 20170928125123) do
     t.boolean  "published",           :default => true
     t.boolean  "destroy_soon",        :default => false
     t.boolean  "blocked",             :default => false
+    t.string   "initials"
+    t.string   "turn"
   end
 
   add_index "spaces", ["course_id"], :name => "index_spaces_on_course_id"
@@ -604,6 +608,8 @@ ActiveRecord::Schema.define(:version => 20170928125123) do
     t.boolean  "visible",     :default => true
     t.boolean  "finalized",   :default => false
     t.boolean  "blocked",     :default => false
+    t.string   "initials"
+    t.string   "status"
   end
 
   add_index "subjects", ["space_id"], :name => "index_subjects_on_space_id"
@@ -712,6 +718,7 @@ ActiveRecord::Schema.define(:version => 20170928125123) do
     t.boolean  "destroy_soon"
     t.string   "recovery_token"
     t.string   "channel"
+    t.string   "registration"
   end
 
   add_index "users", ["activated_at"], :name => "index_users_on_activated_at"

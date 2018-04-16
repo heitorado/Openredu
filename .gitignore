@@ -33,3 +33,4 @@ solr/pids/*
 .env.production
 *.pptx
 *.sh
+backup.sql

@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class ResultsController < BaseController
+  include ExercisesHelper
   before_filter :load_hierarchy, only: [:index, :edit]
 
   load_resource :exercise
@@ -11,7 +12,7 @@ class ResultsController < BaseController
 
     respond_to do |format|
       format.html do
-        redirect_to exercise_question_path(@exercise, @exercise.questions.first)
+        redirect_to exercise_question_path(@exercise, @exercise.questions.first(:conditions => { :position => 1 }))
       end
     end
   end
@@ -50,6 +51,29 @@ class ResultsController < BaseController
     respond_to do |format|
       format.html { render 'results/admin/index' }
     end
+  end
+
+  def download
+    result = Result.find(params[:result_id])
+    #
+    t = result.choices.map do |item|
+      [
+        item.question.statement, 
+        item.question.explanation, 
+        item.question.correct_alternative.text, 
+        item.alternative.text
+      ]
+    end
+
+    report = result.to_report
+
+    html = render(template: 'results/download', locals: {results: t, report: report, result: result} ,layout: 'pdf')[0]
+
+    kit = PDFKit.new(html, page_size: 'A4')
+    send_file kit.to_file("#{Rails.root}/public/result_#{result.id}.pdf"),
+      filename: "result_#{result.id}.pdf",
+      type: "application/pdf",
+      disposition: "inline"
   end
 
   protected

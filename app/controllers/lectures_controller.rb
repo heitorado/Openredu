@@ -100,6 +100,13 @@ class LecturesController < BaseController
       elsif @lecture.lectureable_type == 'Exercise'
         format.html do
           @result = @lecture.lectureable.result_for(current_user)
+          questions = @lecture.lectureable.questions.shuffle
+
+          for i in 1..questions.size
+            questions[i-1].update_column(:position, i)
+          end
+
+          @lecture.lectureable.save
           @first_question = @lecture.lectureable.questions.
             first(:conditions => { :position => 1 })
           render :show_exercise

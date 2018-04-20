@@ -34,3 +34,5 @@ solr/pids/*
 *.pptx
 *.sh
 backup.sql
+.env.test
+.env.development

@@ -241,4 +241,10 @@ class EnvironmentsController < BaseController
       end
     end
   end
+
+  def create_report
+    report = ReportsService.new(@environment)
+    csv = report.create_report
+    send_data csv, filename: "desempenho_completo.csv", type: 'application/csv', disposition: 'inline'
+  end
 end

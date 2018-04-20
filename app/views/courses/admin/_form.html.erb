@@ -9,15 +9,21 @@
 <%= f.text_field :name %>
 <%= concave_errors_for(f.object, :name) %>
 <span class="tip">Nome do curso</span>
+<%= f.label :initials, "Sigla" %>
+<%= f.text_field :initials %>
+<span class="tip">Abreviação do nome do curso</span>
 <%= f.label :workload, "Carga Horária" %>
 <%= f.text_field :workload, :class => 'concave-nano' %>
 <span class="hours">horas</span>
 <span class="tip">Ex.: 60</span>
+<%= f.label :average, "Avaliação" %>
+<%= f.text_field :average %>
+<span class="tip">Media da avaliação do curso. Ex.: 9,5</span>
 <%= f.label :path, "URL" %>
 <%= f.text_field :path %>
 <%= concave_errors_for(f.object, :path) %>
 <span class="tip">Endereço eletrônico do curso</span>
-<%= f.label :description, "Descrição" %>
+<%= f.label :description, "Programa do Curso/Ementa e Requisitos" %>
 <%= f.text_area :description, :size => '100x5' %>
 <%= concave_errors_for(f.object, :description) %>
 <span class="tip">Informações acerca do curso</span>

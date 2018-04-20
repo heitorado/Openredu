@@ -103,7 +103,10 @@ Redu::Application.routes.draw do
    end
 
     resources :exercises, :only => :show do
-      resources :results, :only => [:index, :create, :update, :edit]
+      resources :results, :only => [:index, :create, :update, :edit] do
+        get :download
+      end
+      
       resources :questions, :only => :show do
         resources :choices, :only => [:create, :update]
       end
@@ -199,6 +202,7 @@ Redu::Application.routes.draw do
         get :admin_members
         post :destroy_members
         post :search_users_admin
+        get :create_report
       end
       resources :courses do
         member do
@@ -282,7 +286,7 @@ Redu::Application.routes.draw do
       resources :asset_reports, :path => "progress", :only => [:index]
     end
 
-    resources :users, :only => :show do
+    resources :users, :only => [:show, :create] do
       resources :course_enrollments, :only => :index, :path => :enrollments,
         :as => 'enrollments'
       resources :spaces, :only => :index

@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 module Api
   class UsersController < ApiController
+    skip_authorization_check :only => :create
     def show
       @user = if params[:id]
         User.find(params[:id])
@@ -30,6 +31,18 @@ module Api
         users = users.includes(:social_networks, :tags)
         respond_with(:api, context, users)
       end
+    end
+
+    #first_name, last_name, password, login, email
+    def create
+      user = User.new(params[:user])
+
+      if user.save
+        user.activate
+        user.create_settings!
+      end
+      
+      respond_with user
     end
 
     protected

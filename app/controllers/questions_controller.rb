@@ -5,8 +5,9 @@ class QuestionsController < BaseController
   authorize_resource :question
 
   def show
-    @first_question = @question.first_item
-    @last_question = @question.last_item
+    @first_question = @exercise.questions.first(:conditions => { :position => 1 })
+    @last_question = @exercise.questions.last(:conditions => { :position => @exercise.questions.size })
+
     @choice = @question.choices.
       first(:conditions => { :user_id => current_user.id}) || @question.choices.build
     @result = @exercise.result_for(current_user)

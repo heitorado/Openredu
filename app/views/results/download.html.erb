@@ -1,0 +1,31 @@
+<p>Aluno: <%=result.user.display_name%></p>
+<p>Nota: <%=report[:grade]%></p>
+<p>Acertos: <%=report[:hits]%></p>
+<p>Erros: <%=report[:misses]%></p>
+<p>Não respondeu: <%=report[:blanks]%></p>
+<p>Duração do exame: <%=detailed_period_of_time(report[:duration])%></p>
+<table border="1">
+    <thead>
+        <tr>
+          <th>Enunciado</th>
+          <th>Justificativa</th>
+          <th>Resposta Correta</th>
+          <th>Resposta do Aluno</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% results.each do |line_item| %>
+        <tr>
+            <td><%= line_item[0].html_safe %></td>
+            <td><%= line_item[1].html_safe %></td>
+            <td><%= line_item[2].html_safe %></td>
+            <td><%= line_item[3].html_safe %></td>
+        <tr>
+        <% end %>
+      </tbody>
+  </table>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <p> Assinatura do Professor ou Responsável: _____________________________________________________________</p>

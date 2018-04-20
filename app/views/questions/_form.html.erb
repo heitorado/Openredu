@@ -17,7 +17,7 @@
 <% else %>
   <div class="alternatives">
     <ol>
-      <% question.alternatives.each_with_index do |alternative, index| %>
+      <% question.alternatives.shuffle.each_with_index do |alternative, index| %>
         <%= render 'alternatives/item', :f => f, :index => index, :alternative => alternative %>
       <% end %>
     </ol>

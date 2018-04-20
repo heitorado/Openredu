@@ -9,7 +9,7 @@ CKEDITOR.editorConfig = function( config )
 
   config.removePlugins = 'elementspath';
 
-  config.extraPlugins = 'autogrow';
+  config.extraPlugins = 'autogrow,iframe';
 
   config.autoGrow_minHeight = 200;
 
@@ -51,7 +51,7 @@ CKEDITOR.editorConfig = function( config )
     { name: 'usability', items: [ 'Maximize' ] },
     { name: 'styles', items: [ 'Font', 'FontSize' ] },
     { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-    { name: 'insert', items: [ 'Image', 'Link', 'Table', 'HorizontalRule', 'SpecialChar' ] },
+    { name: 'insert', items: [ 'Image', 'Link', 'Table', 'HorizontalRule', 'SpecialChar', 'Iframe' ] },
     { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] }
   ];
 

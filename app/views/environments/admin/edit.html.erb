@@ -41,7 +41,7 @@
           </div>
         </div>
       <% end %>
-
+      <%= link_to "Gerar relatório completo de Desempenho", create_report_environment_path(@header_environment || @environment), class: 'manage' %>
       <%= form_for @environment, :html => { :class => 'concave-form',
         :multipart => true }, :url => environment_path(@header_environment || @environment) do |f| %>
         <%= concave_error_messages_for(@environment) %>

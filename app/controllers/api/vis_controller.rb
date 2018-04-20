@@ -49,6 +49,7 @@ module Api
     def request_vis(url, param)
       password = Redu::Application.config.vis_data_authentication[:password]
       username = Redu::Application.config.vis_data_authentication[:username]
+
       conn = Faraday.new(
         url: url,
         headers: {'Authorization' =>

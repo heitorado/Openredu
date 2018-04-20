@@ -52,6 +52,17 @@
     </div>
   </div>
 
+  <div class="control-group row">
+    <div class="control-label span3">
+      <%= f.label :registration, "Matrícula" %>
+    </div>
+    <div class="controls span6">
+      <%= f.text_field :registration,
+        :placeholder => "Sua matricula" %>
+      <%= concave_errors_for(f.object, :registration) %>
+    </div>
+  </div>
+
   <%# Data de nascimento %>
   <div class="control-group control-select-date row">
     <div class="control-label span3">

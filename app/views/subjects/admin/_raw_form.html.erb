@@ -4,7 +4,11 @@
 <span class="tip">Nome do módulo</span>
 <%= concave_errors_for(f.object, :name) %>
 
-<%= f.label :description, t(:description) %>
+<%= f.label :initials, "Sigla", :class => "icon-content-gray_32_34-before" %>
+<%= f.text_field :initials, { :class => 'big' } %>
+<span class="tip">Abreviação do nome em forma de sigla</span>
+
+<%= f.label :description, 'Objetivos e Programa' %>
 <%= f.text_area :description, :class => 'subject-description' %>
 <span class="tip">Informações acerca do módulo e suas aulas</span>
 <%= render :partial => 'shared/limit_char_field',
@@ -12,14 +16,14 @@
                :limit => 250 }%>
 <%= concave_errors_for(f.object, :description) %>
 
-<%= f.label :visible, "Disponibilidade" %>
+<%= f.label :visible, "Status" %>
 <ul class="single-column">
   <li>
     <%= f.radio_button :visible, true, :class => "visible-radio" %>
-    <%= f.label :visible, "Visível", :class => "visible-label icon-visible-gray_16_18-before" %>
+    <%= f.label :visible, "Ativo", :class => "visible-label icon-visible-gray_16_18-before" %>
   </li>
   <li class="invisible">
     <%= f.radio_button :visible, false %>
-    <%= f.label :visible, "Invisível" %>
+    <%= f.label :visible, "Inativo" %>
   </li>
 </ul>

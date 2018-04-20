@@ -25,5 +25,9 @@
     <span class="student-null"><%= report[:blanks] %></span>
   </td>
   </td>
+  <td class="cell">
+    <%= link_to "download", exercise_result_download_path(item.exercise, item) %>
+  </td>
+  </td>
 </tr>
 

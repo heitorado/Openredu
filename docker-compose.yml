@@ -6,10 +6,18 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
     volumes:
       - mysql-datavolume:/var/lib/mysql
+    networks: 
+      - vis_default
+      - livredoc_default
+
   mongo:
     image: mongo
     volumes:
          - mongodb-datavolume:/data/db
+    networks: 
+      - vis_default
+      - livredoc_default
+
   app:
     build: .
     volumes:
@@ -19,6 +27,28 @@ services:
     depends_on:
       - mongo
       - db
+    networks: 
+      - vis_default
+      - livredoc_default
+
+  delayedjob:
+    build: .
+    command: rake jobs:work
+    volumes:
+      - .:/app
+    depends_on:
+      - mongo
+      - db
+    networks: 
+      - vis_default
+      - livredoc_default
+      
 volumes:
   mysql-datavolume:
   mongodb-datavolume:
+
+networks:
+  vis_default:
+    external: true
+  livredoc_default:
+    external: true

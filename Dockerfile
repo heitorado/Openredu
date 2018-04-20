@@ -1,4 +1,4 @@
-FROM ruby:1.9.3
+FROM ruby:2.1.2
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs imagemagick
 RUN apt-get install -y default-jre
 RUN mkdir /app
